@@ -4,14 +4,14 @@ A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwa
 
 | Razorpay                                                                                | Paystack                                                                                   |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| ![](https://github.com/NehilKoshiya/uni_payments/blob/master/example/assets/readme/razorpay.gif) | ![](https://github.com/NehilKoshiya/uni_payments/blob/master/example/assets/readme/paystack.gif) |
+| ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/razorpay.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paystack.gif) |
 
 <br>
 <br>
 
 | Paytm                                                                                  | Flutter wave                                                                            |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| ![](https://github.com/NehilKoshiya/uni_payments/blob/master/example/assets/readme/paytm.gif) | ![](https://github.com/NehilKoshiya/uni_payments/blob/master/example/assets/readme/flutterwave.gif) |
+| ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paytm.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/flutterwave.gif) |
 
 <br>
 
