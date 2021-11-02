@@ -1,0 +1,59 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_paystack (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - paytm (0.0.1):
+    - Flutter
+  - razorpay-pod (1.1.16)
+  - razorpay_flutter (1.1.10):
+    - Flutter
+    - razorpay-pod
+  - uni_payments (0.0.1):
+    - Flutter
+  - webview_flutter (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_paystack (from `.symlinks/plugins/flutter_paystack/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - paytm (from `.symlinks/plugins/paytm/ios`)
+  - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
+  - uni_payments (from `.symlinks/plugins/uni_payments/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - razorpay-pod
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_paystack:
+    :path: ".symlinks/plugins/flutter_paystack/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  paytm:
+    :path: ".symlinks/plugins/paytm/ios"
+  razorpay_flutter:
+    :path: ".symlinks/plugins/razorpay_flutter/ios"
+  uni_payments:
+    :path: ".symlinks/plugins/uni_payments/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_paystack: 50021637b71e7712780744f69d2843e71b65175d
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  paytm: 776e5d03fbe319a3c5ace1ffacd4718946c440a3
+  razorpay-pod: f1763f8ee8f83152837abe7de1cdfbcd4eb035b9
+  razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
+  uni_payments: 2a9e8cad4fa059237c431252823018fc0a4df68f
+  webview_flutter: 3603125dfd3bcbc9d8d418c3f80aeecf331c068b
+
+PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
+
+COCOAPODS: 1.10.2
