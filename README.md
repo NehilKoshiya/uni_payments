@@ -1,7 +1,6 @@
 # Uni Payments
 A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwave Payment Gateway for accepting online payments in Flutter app.
 <br>
-
 | Razorpay                                                                                        | Paystack                                                                                        |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/razorpay.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paystack.gif) |
@@ -13,7 +12,13 @@ A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwa
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paytm.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/flutterwave.gif) |
 
+<br> 
 <br>
+
+| GooglePay                                                                                        |                                                          
+| -------------------------------------------------------------------------------------------- |
+| ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) | 
+
 
 
 ## :rocket: Installation
@@ -124,9 +129,13 @@ Sample code to integrate can be found in [example/lib/main.dart](example/lib/mai
           /// perform action on failure here /// 
         }
       },
-    );
+    );****
 ```
-## :pencil: Contributing, :disappointed: Issues and :bug: Bug Reports
+
+
+<br>
+****
+## :🪄: Contributing, :disappointed: Issues and :bug: Bug Reports
 The project is open to public contribution. Please feel very free to contribute.
 Experienced an issue or want to report a bug? Please, [report it here](https://github.com/NehilKoshiya/uni_payments/issues). Remember to be as descriptive as possible.
 
