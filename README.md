@@ -10,7 +10,6 @@ A Flutter plugin for making payments via different payment methods for accepting
 ✅ &nbsp; GooglePay
 <br>
 <br>
-
 | Razorpay                                                                                        | Paystack                                                                                        |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/razorpay.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paystack.gif) |
@@ -25,11 +24,19 @@ A Flutter plugin for making payments via different payment methods for accepting
 <br> 
 <br>
 
+<<<<<<< HEAD
 | GooglePay                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------- |
 | ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) |
 
 <br>
+=======
+| GooglePay                                                                                        |                                                          
+| -------------------------------------------------------------------------------------------- |
+| ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) | 
+
+
+>>>>>>> 8deb8d8fd1809d7a6a317c1ab8975edeb54d8d75
 
 ## :rocket: Installation
 
@@ -139,8 +146,9 @@ Sample code to integrate can be found in [example/lib/main.dart](example/lib/mai
           /// perform action on failure here /// 
         }
       },
-    );
+    );****
 ```
+<<<<<<< HEAD
 #### Integrate Googlepay Payment Gateway
 ```dart
 UniPayments.uniPaymentGooglePayButton(
@@ -172,6 +180,13 @@ UniPayments.uniPaymentGooglePayButton(
 
 If you found this project useful, then please consider giving it a :star:  on Github and sharing it with your friends via social media.
 
+=======
+
+
+<br>
+****
+## :🪄: Contributing, :disappointed: Issues and :bug: Bug Reports
+>>>>>>> 8deb8d8fd1809d7a6a317c1ab8975edeb54d8d75
 The project is open to public contribution. Please feel very free to contribute.
 Experienced an issue or want to report a bug? Please, [report it here](https://github.com/NehilKoshiya/uni_payments/issues). Remember to be as descriptive as possible.
 
