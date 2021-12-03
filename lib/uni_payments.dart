@@ -5,7 +5,7 @@ import 'package:uni_payments/methods/paystack_service.dart';
 import 'package:uni_payments/methods/paytm_service.dart';
 import 'package:uni_payments/methods/razorpay_service.dart';
 import 'package:uni_payments/model/unipaymentresponse.dart';
-
+import 'package:uni_payments/methods/googlepay_service.dart';
 export '../../model/unipaymentresponse.dart';
 
 /// Main class where all methods are called and return perticular response
@@ -118,5 +118,41 @@ class UniPayments {
         isDebugMode: isDebugMode,
         successListener: successListener,
         failureListener: failureListener);
+  }
+
+  /// [uniPaymentGooglePayButton] is called,to integrate GooglePay payment gateway.
+  /// Following parameters which are required need to pass while implementing,
+  /// rest of are not neccesary as per need.
+  /// [paymentConfigurationAsset] where you add asset path from asset folder.
+  static Widget uniPaymentGooglePayButton({
+    required String paymentConfigurationAsset,
+    required failureListener(UniPaymentResponse response),
+    required Function(UniPaymentResponse) successListener,
+    required UniPaymentItemStatus uniPaymentItemStatus,
+    required UniPaymentItemTypes uniPaymentItemTypes,
+    required onPressed,
+    required String paymentLabel,
+    required String payableAmount,
+    UniPaymentGoogleButtonStyle? uniPaymentGoogleButtonStyle,
+    UniPaymentGoogleButtonType? uniPaymentGoogleButtonType,
+    double? height,
+    double? width,
+    Widget? loadingIndicator,
+  }) {
+    return GooglePayService().universalGooglePay(
+      paymentConfigurationAsset: paymentConfigurationAsset,
+      failureListener: failureListener,
+      successListener: successListener,
+      uniPaymentItemStatus: uniPaymentItemStatus,
+      uniPaymentItemTypes: uniPaymentItemTypes,
+      onPressed: onPressed,
+      paymentLabel: paymentLabel,
+      payableAmount: payableAmount,
+      height: height,
+      width: width,
+      loadingIndicator: loadingIndicator,
+      uniPaymentGoogleButtonStyle: uniPaymentGoogleButtonStyle,
+      uniPaymentGoogleButtonType: uniPaymentGoogleButtonType,
+    );
   }
 }

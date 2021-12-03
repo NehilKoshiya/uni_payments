@@ -1,6 +1,6 @@
 name: uni_payments
 description: A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwave Payment Gateway for accepting online payments in Flutter app.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/NehilKoshiya/uni_payments/blob/master/example/lib/main.dart
 repository: https://github.com/NehilKoshiya/uni_payments
 
@@ -22,7 +22,8 @@ dependencies:
   razorpay_flutter:
   flutter_paystack:
   paytm: 
-  flutterwave: 
+  flutterwave:
+  pay: 
     
   
       

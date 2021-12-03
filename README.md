@@ -1,5 +1,14 @@
 # Uni Payments
-A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwave Payment Gateway for accepting online payments in Flutter app.
+A Flutter plugin for making payments via different payment methods for accepting online payments in Flutter app.
+<br>
+## Available Payment Methods
+
+✅ &nbsp; Razorpay </br>
+✅ &nbsp; Paystack</br>
+✅ &nbsp; FlutterWave</br>
+✅ &nbsp; Paytm</br>
+✅ &nbsp; GooglePay
+<br>
 <br>
 
 | Razorpay                                                                                        | Paystack                                                                                        |
@@ -13,8 +22,14 @@ A Flutter plugin for making payments via razorpay, paystack, paytm and flutterwa
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/paytm.gif) | ![](https://github.com/NehilKoshiya/uni_payments/raw/master/example/assets/readme/flutterwave.gif) |
 
+<br> 
 <br>
 
+| GooglePay                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------- |
+| ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) |
+
+<br>
 
 ## :rocket: Installation
 
@@ -126,10 +141,40 @@ Sample code to integrate can be found in [example/lib/main.dart](example/lib/mai
       },
     );
 ```
-## :pencil: Contributing, :disappointed: Issues and :bug: Bug Reports
+#### Integrate Googlepay Payment Gateway
+```dart
+UniPayments.uniPaymentGooglePayButton(
+                      paymentConfigurationAsset: 'ENTER_ASSET_PATH',
+                      height: 150,
+                      width: 150,
+                      uniPaymentItemStatus: UniPaymentItemStatus.pending,
+                      uniPaymentItemTypes: UniPaymentItemTypes.item,
+                      payableAmount: "ENTER_AMOUNT_HERE",
+                      uniPaymentGoogleButtonStyle:
+                          UniPaymentGoogleButtonStyle.flat,
+                      uniPaymentGoogleButtonType:
+                          UniPaymentGoogleButtonType.donate,
+                      paymentLabel: "ENTER_LABLE_PAYMENT",
+                      failureListener: (UniPaymentResponse paymentResponse) {
+                        /// here manage code for failure or error in payment. ///
+                      },
+                      successListener: (UniPaymentResponse paymentResponse) {
+                        /// here manage code for failure or error in payment. ///
+                      },
+                      onPressed: () {
+                        print("Universal Google Pay Button Pressed");
+                      },
+                    ),
+```                    
+***
+
+### :heart:  Found this project useful?
+
+If you found this project useful, then please consider giving it a :star:  on Github and sharing it with your friends via social media.
+
 The project is open to public contribution. Please feel very free to contribute.
 Experienced an issue or want to report a bug? Please, [report it here](https://github.com/NehilKoshiya/uni_payments/issues). Remember to be as descriptive as possible.
 
-## Support :heart:
-<a href="https://www.buymeacoffee.com/nehilkoshiya3" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 117px !important;" ></a>
+---
+
 

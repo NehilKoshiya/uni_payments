@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni_payments/methods/googlepay_service.dart';
 import 'package:uni_payments/uni_payments.dart';
 import 'package:uni_payments_example/helpers/helpers.dart';
 import 'package:uni_payments_example/services/services.dart';
@@ -144,6 +145,52 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                     child: Image.asset("assets/images/flutterwave.png"),
+                  ),
+                ),
+              ],
+            ),
+            Helpers().sizedBox(20.0, 0.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 7,
+                          offset: Offset(4, 6),
+                        ),
+                      ],
+                    ),
+                    child: UniPayments.uniPaymentGooglePayButton(
+                      paymentConfigurationAsset: 'ENTER_ASSET_PATH',
+                      height: 150,
+                      width: 150,
+                      uniPaymentItemStatus: UniPaymentItemStatus.pending,
+                      uniPaymentItemTypes: UniPaymentItemTypes.item,
+                      payableAmount: "ENTER_AMOUNT_HERE",
+                      uniPaymentGoogleButtonStyle:
+                          UniPaymentGoogleButtonStyle.flat,
+                      uniPaymentGoogleButtonType:
+                          UniPaymentGoogleButtonType.donate,
+                      paymentLabel: "ENTER_LABLE_PAYMENT",
+                      failureListener: (UniPaymentResponse paymentResponse) {
+                        Helpers().snackBar(
+                            _scaffoldkey, false, paymentResponse.message);
+                      },
+                      successListener: (UniPaymentResponse paymentResponse) {
+                        Helpers().snackBar(
+                            _scaffoldkey, true, paymentResponse.message);
+                      },
+                      onPressed: () {
+                        print("Universal Google Pay Button Pressed");
+                      },
+                    ),
                   ),
                 ),
               ],
