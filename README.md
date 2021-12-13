@@ -24,19 +24,11 @@ A Flutter plugin for making payments via different payment methods for accepting
 <br> 
 <br>
 
-<<<<<<< HEAD
 | GooglePay                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------- |
 | ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) |
 
 <br>
-=======
-| GooglePay                                                                                        |                                                          
-| -------------------------------------------------------------------------------------------- |
-| ![](https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/googlepay.gif) | 
-
-
->>>>>>> 8deb8d8fd1809d7a6a317c1ab8975edeb54d8d75
 
 ## :rocket: Installation
 
