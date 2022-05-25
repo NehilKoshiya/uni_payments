@@ -21,7 +21,7 @@ dependencies:
   # package for payment SDKs #   
   razorpay_flutter:
   flutter_paystack:
-  paytm: 
+  paytm: ^3.0.1
   flutterwave:
   pay: 
     
