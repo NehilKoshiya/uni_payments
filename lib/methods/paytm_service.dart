@@ -44,8 +44,13 @@ class PaytmService {
         String txnToken = getdata["txn_token"];
 
         /// for getting response of transaction.
-        var paytmResponse = Paytm.payWithPaytm(paytmMerchantId, orderId,
-            txnToken, amount.toString(), callBackUrl, isTesting);
+        var paytmResponse = Paytm.payWithPaytm(
+            mId: paytmMerchantId,
+            orderId: orderId,
+            txnToken: txnToken,
+            txnAmount: amount.toString(),
+            callBackUrl: callBackUrl,
+            staging: isTesting);
 
         paytmResponse.then((value) {
           if (value['error']) {
