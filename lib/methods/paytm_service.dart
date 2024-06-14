@@ -1,103 +1,63 @@
-import 'dart:convert';
-import 'package:http/http.dart';
+import 'dart:io';
 
-import 'package:paytm/paytm.dart';
+import 'package:paytm_allinonesdk/paytm_allinonesdk.dart';
 import '../uni_payments.dart';
 
 class PaytmService {
+  /// open paytm payments gateway
   openPaytm({
-    required String baseUrl,
-    required Map<String, String> headers,
-    required Map<String, String> body,
     required String paytmMerchantId,
     required String orderId,
-    required bool isTesting,
+    required String uniqueTransactionToken,
+    required bool isStaging,
     required double amount,
     required Function(UniPaymentResponse) successListener,
     required Function(UniPaymentResponse) failureListener,
-  }) async {
-    // storing messages here
-    String? paymentResponse;
+  }) {
+    /// set the development env for managing payments
+    String callBackURL = isStaging
+        ? "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=$orderId"
+        : "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=$orderId";
 
-    /// managing callBackUrl Here
-    String callBackUrl = (isTesting
-            ? 'https://securegw-stage.paytm.in'
-            : 'https://securegw.paytm.in') +
-        '/theia/paytmCallback?ORDER_ID=' +
-        orderId;
+    /// initiate transaction
+    var response = AllInOneSdk.startTransaction(
+        paytmMerchantId,
+        orderId,
+        amount.toString(),
+        uniqueTransactionToken,
+        callBackURL,
+        isStaging,
+        true);
 
-    try {
-      /// call api for getting response.
-      final response = await post(
-        Uri.parse(baseUrl),
-        body: body,
-        headers: headers,
-      );
-
-      /// convert response in readable data.
-      var getdata = json.decode(response.body);
-
-      /// return if any error in API or not.
-      bool error = getdata["error"];
-
-      if (!error) {
-        String txnToken = getdata["txn_token"];
-
-        /// for getting response of transaction.
-        var paytmResponse = Paytm.payWithPaytm(paytmMerchantId, orderId,
-            txnToken, amount.toString(), callBackUrl, isTesting);
-
-        paytmResponse.then((value) {
-          if (value['error']) {
-            paymentResponse = value['errorMessage'];
-
-            /// return failure event with errorMessage and status.
-            failureListener(
-                UniPaymentResponse(value['errorMessage'], false, "TXN_FAIL"));
-          } else {
-            if (value['response'] != null) {
-              paymentResponse = value['response']['STATUS'];
-              if (paymentResponse == "TXN_SUCCESS") {
-                /// return Success event with successMessage and status.
-                successListener(
-                  UniPaymentResponse(
-                    value['response']['STATUS'],
-                    true,
-                    value['response']['TXNID'],
-                  ),
-                );
-              } else {
-                /// return Success event with successMessage and status.
-                successListener(
-                  UniPaymentResponse(
-                    value['response']['STATUS'],
-                    true,
-                    value['response']['TXNID'],
-                  ),
-                );
-              }
-            }
-          }
-        });
-      } else {
-        ///  found any error at start return this listner.
-        failureListener(
+    response.then((value) {
+      if (Platform.isAndroid) {
+        /// Registers event listeners for payment success events
+        successListener(
           UniPaymentResponse(
-            "Transaction cancel by user",
-            false,
-            "TXN_FAIL",
+            value.toString(),
+            value!['STATUS'],
+            value['TXNID'],
+          ),
+        );
+      } else {
+        /// Registers event listeners for payment failures events
+        successListener(
+          UniPaymentResponse(
+            value.toString(),
+            value!['response']['STATUS'],
+            value['response']['TXNID'],
           ),
         );
       }
-    } catch (e) {
-      // for caching error with errormessage
+    }).catchError((onError) {
+      /// Registers event listeners for payment failures events
       failureListener(
         UniPaymentResponse(
-          e.toString(),
+          "${onError.message.toString()} ${onError.details.toString()}",
           false,
           "TXN_FAIL",
         ),
       );
-    }
+    });
   }
 }

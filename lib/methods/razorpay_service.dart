@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -12,7 +11,7 @@ class RazorpayServices {
   onSuccess(PaymentSuccessResponse response, successListener) {
     successListener(
       UniPaymentResponse(
-        "successful response",
+        "Payment Successful",
         true,
         response.paymentId.toString(),
       ),
@@ -22,9 +21,7 @@ class RazorpayServices {
   /// Registers event listeners for payment failures events
   onFailure(PaymentFailureResponse response, failureLitener) {
     failureLitener(UniPaymentResponse(
-        json.decode(response.message!)['error']['description'],
-        false,
-        json.decode(response.message!)['error']['reason']));
+        response.error!['description'], false, response.error!['reason']));
   }
 
   /// Method for open razorpay and listening payment events
@@ -34,6 +31,8 @@ class RazorpayServices {
     required String razorpayKey,
     required double amount,
     required String userName,
+    String? description,
+    String? colorCode,
     required Function(UniPaymentResponse) successListener,
     required Function(UniPaymentResponse) failureListener,
   }) {
@@ -42,11 +41,13 @@ class RazorpayServices {
       'amount': amount * 100,
       'name': userName,
       'prefill': {'contact': contactNumber, 'email': emailId},
+      'description': description ?? '',
+      'theme': {
+        'color': colorCode ?? '#0CA72F',
+      },
+      'send_sms_hash': true,
     };
     try {
-      /// initialize razrorpay
-      _razorpay!.open(options);
-
       /// event listeners for successs payment
       _razorpay!.on(
         Razorpay.EVENT_PAYMENT_SUCCESS,
@@ -62,6 +63,9 @@ class RazorpayServices {
           onFailure(res, failureListener);
         },
       );
+
+      /// initialize razrorpay
+      _razorpay!.open(options);
     } catch (e) {
       /// return if something went wrong
       debugPrint(

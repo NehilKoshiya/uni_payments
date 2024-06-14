@@ -24,9 +24,9 @@ enum UniPaymentGoogleButtonType {
 }
 
 class GooglePayService {
-  Widget universalGooglePay({
+  universalGooglePay({
     required String paymentConfigurationAsset,
-    required failureListener(UniPaymentResponse response),
+    required Function(UniPaymentResponse) failureListener,
     required Function(UniPaymentResponse) successListener,
     required UniPaymentItemStatus uniPaymentItemStatus,
     required UniPaymentItemTypes uniPaymentItemTypes,
@@ -58,68 +58,62 @@ class GooglePayService {
 
     /// return widget as googlepaybutton which is fully customizable
     return GooglePayButton(
-      paymentConfigurationAsset: paymentConfigurationAsset,
-      paymentItems: _paymentItems,
-      height: height ?? 50,
-      width: width ?? 150,
-      // onPressed: onPressed,
+        paymentItems: _paymentItems,
+        height: height ?? 50,
+        buttonProvider: PayProvider.google_pay,
+        width: width ?? 150,
+        onPressed: onPressed,
 
-      /// for handeling failures during payment occuring.
-      onError: (data) {
-        failureListener(
-          UniPaymentResponse(
-            "User canceled payment authorization",
-            false,
-            "paymentCanceled",
-          ),
-        );
-      },
+        /// for handeling failures during payment occuring.
+        onError: (data) {
+          failureListener(
+            UniPaymentResponse(
+              data.toString(),
+              false,
+              "TXN_FAILED",
+            ),
+          );
+        },
 
-      /// for handeling success during payment occuring.
-      onPaymentResult: (data) {
-        successListener(
-          UniPaymentResponse(
-            "Successful Payment Done.",
-            true,
-            "payment",
-          ),
-        );
-      },
+        /// for handeling success during payment occuring.
+        onPaymentResult: (data) {
+          successListener(
+            UniPaymentResponse(
+              data.toString(),
+              true,
+              data['tokenizationData']['token'],
+            ),
+          );
+        },
 
-      /// for handeling color and style of googlepay button.
-      style: uniPaymentGoogleButtonStyle == UniPaymentGoogleButtonStyle.white
-          ? GooglePayButtonStyle.white
-          : uniPaymentGoogleButtonStyle == UniPaymentGoogleButtonStyle.black
-              ? GooglePayButtonStyle.black
-              : GooglePayButtonStyle.flat,
+        /// when payment is runnning at that time this widget will shows.
+        loadingIndicator: loadingIndicator ??
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
 
-      /// when payment is runnning at that time this widget will shows.
-      loadingIndicator: loadingIndicator ??
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
-
-      /// for handeling different types of button UI.
-      type: uniPaymentGoogleButtonType == UniPaymentGoogleButtonType.book
-          ? GooglePayButtonType.book
-          : uniPaymentGoogleButtonType == UniPaymentGoogleButtonType.buy
-              ? GooglePayButtonType.buy
-              : uniPaymentGoogleButtonType ==
-                      UniPaymentGoogleButtonType.checkout
-                  ? GooglePayButtonType.checkout
-                  : uniPaymentGoogleButtonType ==
-                          UniPaymentGoogleButtonType.donate
-                      ? GooglePayButtonType.donate
-                      : uniPaymentGoogleButtonType ==
-                              UniPaymentGoogleButtonType.pay
-                          ? GooglePayButtonType.pay
-                          : uniPaymentGoogleButtonType ==
-                                  UniPaymentGoogleButtonType.plain
-                              ? GooglePayButtonType.plain
-                              : uniPaymentGoogleButtonType ==
-                                      UniPaymentGoogleButtonType.subscribe
-                                  ? GooglePayButtonType.subscribe
-                                  : GooglePayButtonType.order,
-    );
+        /// for handeling different types of button UI.
+        type: uniPaymentGoogleButtonType == UniPaymentGoogleButtonType.book
+            ? GooglePayButtonType.book
+            : uniPaymentGoogleButtonType == UniPaymentGoogleButtonType.buy
+                ? GooglePayButtonType.buy
+                : uniPaymentGoogleButtonType ==
+                        UniPaymentGoogleButtonType.checkout
+                    ? GooglePayButtonType.checkout
+                    : uniPaymentGoogleButtonType ==
+                            UniPaymentGoogleButtonType.donate
+                        ? GooglePayButtonType.donate
+                        : uniPaymentGoogleButtonType ==
+                                UniPaymentGoogleButtonType.pay
+                            ? GooglePayButtonType.pay
+                            : uniPaymentGoogleButtonType ==
+                                    UniPaymentGoogleButtonType.plain
+                                ? GooglePayButtonType.plain
+                                : uniPaymentGoogleButtonType ==
+                                        UniPaymentGoogleButtonType.subscribe
+                                    ? GooglePayButtonType.subscribe
+                                    : GooglePayButtonType.order,
+        paymentConfiguration:
+            PaymentConfiguration.fromJsonString(paymentConfigurationAsset));
   }
 }

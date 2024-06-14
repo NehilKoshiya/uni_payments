@@ -1,95 +1,135 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:uni_payments/methods/paystack_service.dart';
 import 'package:uni_payments/uni_payments.dart';
-import 'package:uni_payments_example/helpers/helpers.dart';
 
 class Services {
-  Future callRazorPayService(GlobalKey<ScaffoldState> key) async {
+  Future callRazorPayService() async {
     await UniPayments.razorPayPayment(
-      razorpayKey: "ENTER_RAZORPAY_KEY",
-      contactNumber: "ENTER_MOBILE_NUMBER",
-      emailId: "ENTER_EMAIL_ID",
+      razorpayKey: "enter_key_here",
+      contactNumber: "+91-1234567890",
+      emailId: "test@gmail.com",
       amount: 2500,
-      userName: "ENTER_USER_NAME",
+      userName: "uni_payments",
+      colorCode: '#fcba03',
+      description: 'Add the description for the order or payment.',
       successListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for success payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, true, "Razorpay Payment Success");
+        /// here manage code for success payment.
+        bool isSuccessPayment = uniPaymentResponse.paymentStatus;
+        if (isSuccessPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
       failureListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for failure or error in payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, false, "Razorpay Payment Failure");
+        /// here manage code for failure or error in payment.
+        bool isFailedPayment = uniPaymentResponse.paymentStatus;
+        if (isFailedPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
     );
   }
 
-  Future callPayStackService({required BuildContext context}) async {
+  Future payStackService({required BuildContext context}) async {
     /// Return UniPaymentResponse ///
-    return await PayStackService().openPaystackWithCard(
+    UniPaymentResponse uniPaymentResponse = await UniPayments.payStackPayment(
       context: context,
-      emailId: "ENTER_EMAIL_ID",
-      payStackKey: 'ENTER_PAYSTACK_KEY_HERE',
+      emailId: "test@gmail.com",
+      payStackKey: 'enter_key_here',
       amount: 2500,
+      uniqueRefrenceID: 'XfhjsgpG87ds50mf',
+      callbackUrl: 'https://meta-labs-website.web.app/',
     );
+
+    bool isSuccessPayment = uniPaymentResponse.paymentStatus;
+
+    if (isSuccessPayment) {
+      log(uniPaymentResponse.message);
+      log(uniPaymentResponse.paymentId);
+    } else {
+      log(uniPaymentResponse.message);
+      log(uniPaymentResponse.paymentId);
+    }
   }
 
-  Future callPayTmService(GlobalKey<ScaffoldState> key) async {
+  Future paytmService() async {
     await UniPayments.paytmPayment(
-      baseUrl: "ENTER_BASE_URL_FROM_BACKEND",
-      bodyParameter: {
-        /// Enter map of bodyparameter ///
-      },
-      headers: {
-        /// Enter map of headers ///
-      },
-      paytmMerchantId: "ENTER_PAYTM_MERCHENT_ID",
-      orderId: "ENTER_ORDER_ID",
-      isTesting: true,
+      /// Login to "dashboard.paytm.com" with your Paytm account details & Get Merchant Id.
+      paytmMerchantId: "paytm_merchant_id",
+      orderId: "order_id",
+      isStaging: true,
+      uniqueTransactionToken: "unique_id_database_refrences",
       amount: 2500,
       successListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for success payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, true, "Paytm Payment Success");
+        /// here manage code for success payment.
+        bool isSuccessPayment = uniPaymentResponse.paymentStatus;
+        if (isSuccessPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
       failureListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for failure or error in payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, false, "Paytm Payment Failure");
+        /// here manage code for failure or error in payment.
+        bool isFailedPayment = uniPaymentResponse.paymentStatus;
+        if (isFailedPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
     );
   }
 
-  Future callFlutterWaveService(
-      {required BuildContext context,
-      required GlobalKey<ScaffoldState> key}) async {
+  Future flutterWaveService({required BuildContext context}) async {
     await UniPayments.flutterWavePayment(
       buildContext: context,
-      publicKey: 'ENTER_PUBLIC_KEY_HERE',
-      encryptionKey: 'ENTER_ENCRYPTION_KEY',
+      publicKey: 'enter_public_key_here',
+      encryptionKey: 'enter_encryprion_key',
       currencyCode: 'NGN',
       amount: '2500',
-      receiptantName: 'ENTER_USER_NAME',
-      emailId: 'ENTER_EMAIL_ID',
-      phoneNumber: 'ENTER_CONTACT_NUMBER',
+      receiptantName: 'Test User',
+      emailId: 'test@gmail.com',
+      phoneNumber: '+91-1234567890',
       isDebugMode: true,
-      acceptCardPayment: true,
+      redirectURL: 'add-redirect-url-here',
+      transactionRef: 'add-random-string-everytime-transaction-refrence',
       successListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for success payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, true, "FlutterWave Payment Success");
+        /// here manage code for success payment.
+        bool isSuccessPayment = uniPaymentResponse.paymentStatus;
+        if (isSuccessPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
       failureListener: (UniPaymentResponse uniPaymentResponse) {
-        /// here manage code for failure or error in payment. ///
-        if (uniPaymentResponse.paymentStatus) {
-          Helpers().snackBar(key, false, "FlutterWave Payment Failure");
+        /// here manage code for failure or error in payment.
+        bool isFailedPayment = uniPaymentResponse.paymentStatus;
+        if (isFailedPayment) {
+          log(uniPaymentResponse.message);
+          log(uniPaymentResponse.paymentId);
         }
       },
     );
+  }
+
+  Future callBraintreePaypalService() async {
+    UniPaymentResponse uniPaymentResponse =
+        await UniPayments.payPalBraintreePayment(
+            tokenizationKey: "enter_key_here",
+            amount: 5200,
+            emailId: 'test@gmail.com',
+            name: 'Nehil',
+            countryCode: 'US',
+            currencyCode: 'USD');
+
+    bool isSuccessPayment = uniPaymentResponse.paymentStatus;
+    if (isSuccessPayment) {
+      log(uniPaymentResponse.message);
+      log(uniPaymentResponse.paymentId);
+    } else {
+      log(uniPaymentResponse.message);
+      log(uniPaymentResponse.paymentId);
+    }
   }
 }
