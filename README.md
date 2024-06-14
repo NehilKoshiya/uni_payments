@@ -1,4 +1,7 @@
 # Uni Payments
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5fef53f0a65442eda1115156722c09e4)](https://app.codacy.com/gh/NehilKoshiya/uni_payments?utm_source=github.com&utm_medium=referral&utm_content=NehilKoshiya/uni_payments&utm_campaign=Badge_Grade)
+
 A Flutter plugin for making payments via different payment methods for accepting online payments in Flutter app.
 <br>
 ## Available Payment Methods
