@@ -1,7 +1,4 @@
-<br>
-
 <h1 align="center">
-  <br>
    <img src="https://raw.githubusercontent.com/NehilKoshiya/uni_payments/master/example/assets/readme/readmE.png" alt="Uni Payments" title="Logo" />
   <br>
 </h1>
