@@ -1,6 +1,6 @@
 name: uni_payments
-description: Uni Payments offers seamless integration for multiple payment gateways including Razorpay, Flutterwave, Google Pay, Paytm, Paystack, and PayPal ensuring a fast, easy and secure transaction process.
-version: 0.0.3
+description: Uni Payments integrates various payment gateways for fast and easy transactions.
+version: 0.0.4
 homepage: https://github.com/NehilKoshiya/uni_payments/blob/master/example/lib/main.dart
 repository: https://github.com/NehilKoshiya/uni_payments
 

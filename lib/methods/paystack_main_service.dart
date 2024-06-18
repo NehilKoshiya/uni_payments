@@ -12,7 +12,7 @@ class PaystackService {
     required String payStackKey,
   }) async {
     try {
-      final request = await PaystackTransactionRequest(
+      final request = PaystackTransactionRequest(
         reference: uniqueRefrenceID,
         secretKey: payStackKey,
         email: emailId,
