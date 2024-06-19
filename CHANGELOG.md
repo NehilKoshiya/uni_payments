@@ -13,3 +13,7 @@
 ## 0.0.4
 
 - Solve Pub Analytics Issues.
+
+## 0.0.5
+
+- Web platform remove due to unsupported SDKs.

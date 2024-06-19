@@ -1,6 +1,6 @@
 name: uni_payments
 description: Uni Payments integrates various payment gateways for fast and easy transactions.
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/NehilKoshiya/uni_payments/blob/master/example/lib/main.dart
 repository: https://github.com/NehilKoshiya/uni_payments
 
@@ -35,6 +35,3 @@ flutter:
         pluginClass: UniPaymentsPlugin
       ios:
         pluginClass: UniPaymentsPlugin
-      web:
-        pluginClass: UniPaymentsWeb
-        fileName: uni_payments_web.dart
