@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:uni_payments_example/unipayment_home_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'theme/app_theme.dart';
+import 'ui/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(home: MyApp()));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
+  runApp(const UniPaymentsDemoApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+/// Demo app shell. Dark-mode only — payment SDKs (Razorpay, Stripe,
+/// Paytm, …) render their own modals on top, so a uniformly dark host
+/// gives the cleanest contrast.
+class UniPaymentsDemoApp extends StatelessWidget {
+  /// Create the demo app shell.
+  const UniPaymentsDemoApp({super.key});
 
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = GoogleFonts.interTextTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: UniPaymentsHomeScreen(),
+      title: 'Uni Payments',
+      theme: AppTheme.dark(textTheme),
+      home: const HomeScreen(),
     );
   }
 }

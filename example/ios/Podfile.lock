@@ -1,65 +1,248 @@
 PODS:
+  - Braintree (5.27.0):
+    - Braintree/Card (= 5.27.0)
+    - Braintree/Core (= 5.27.0)
+    - Braintree/PayPal (= 5.27.0)
+  - Braintree/ApplePay (5.27.0):
+    - Braintree/Core
+  - Braintree/Card (5.27.0):
+    - Braintree/Core
+  - Braintree/Core (5.27.0)
+  - Braintree/PaymentFlow (5.27.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPal (5.27.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.27.0)
+  - Braintree/ThreeDSecure (5.27.0):
+    - Braintree/Card
+    - Braintree/PaymentFlow
+  - Braintree/UnionPay (5.27.0):
+    - Braintree/Card
+  - Braintree/Venmo (5.27.0):
+    - Braintree/Core
+  - braintree_flutter_plus (5.0.3):
+    - Braintree (~> 5.27.0)
+    - Braintree/ApplePay (~> 5.27.0)
+    - Braintree/PayPal (~> 5.27.0)
+    - BraintreeDropIn (= 9.14.0)
+    - Flutter
+  - BraintreeDropIn (9.14.0):
+    - Braintree/ApplePay (~> 5.27)
+    - Braintree/Card (~> 5.27)
+    - Braintree/Core (~> 5.27)
+    - Braintree/PayPal (~> 5.27)
+    - Braintree/ThreeDSecure (~> 5.27)
+    - Braintree/UnionPay (~> 5.27)
+    - Braintree/Venmo (~> 5.27)
+  - CashfreeAnalyticsSDK (2.3.3):
+    - CFNetworkSDK (= 2.3.3)
+  - CashfreePG (2.3.7):
+    - CashfreePGUISDK (= 2.3.7)
+  - CashfreePGCoreSDK (2.3.7):
+    - CashfreeAnalyticsSDK (= 2.3.3)
+  - CashfreePGUISDK (2.3.7):
+    - CashfreePGCoreSDK (= 2.3.7)
+  - CFNetworkSDK (2.3.3)
   - Flutter (1.0.0)
-  - flutter_paystack (0.0.1):
+  - flutter_cashfree_pg_sdk (0.0.1):
+    - CashfreePG (= 2.3.7)
     - Flutter
-  - path_provider (0.0.1):
+  - flutter_inappwebview_ios (0.0.1):
     - Flutter
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 6.0.3)
+  - flutter_inappwebview_ios/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 6.0.3)
+  - fluttertoast (0.0.2):
+    - Flutter
+  - OrderedSet (6.0.3)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - pay_ios (0.0.1):
     - Flutter
-  - paytm (0.0.1):
+  - paytmpayments_allinonesdk (1.0.3):
     - Flutter
-  - razorpay-pod (1.1.16)
+  - phonepe_payment_sdk (3.0.2):
+    - Flutter
+    - PhonePePayment (= 4.0.0)
+  - PhonePePayment (4.0.0)
+  - razorpay-core-pod (1.0.6)
+  - razorpay-pod (1.5.3):
+    - razorpay-core-pod (= 1.0.6)
   - razorpay_flutter (1.1.10):
     - Flutter
     - razorpay-pod
-  - uni_payments (0.0.1):
+  - Stripe (25.9.0):
+    - StripeApplePay (= 25.9.0)
+    - StripeCore (= 25.9.0)
+    - StripeIssuing (= 25.9.0)
+    - StripePayments (= 25.9.0)
+    - StripePaymentsUI (= 25.9.0)
+    - StripeUICore (= 25.9.0)
+  - stripe_ios (0.0.1):
     - Flutter
-  - webview_flutter (0.0.1):
+    - Stripe (~> 25.9.0)
+    - stripe_ios/stripe_ios (= 0.0.1)
+    - stripe_ios/stripe_objc (= 0.0.1)
+    - StripeApplePay (~> 25.9.0)
+    - StripeFinancialConnections (~> 25.9.0)
+    - StripePayments (~> 25.9.0)
+    - StripePaymentSheet (~> 25.9.0)
+    - StripePaymentsUI (~> 25.9.0)
+  - stripe_ios/stripe_ios (0.0.1):
     - Flutter
+    - Stripe (~> 25.9.0)
+    - stripe_ios/stripe_objc
+    - StripeApplePay (~> 25.9.0)
+    - StripeFinancialConnections (~> 25.9.0)
+    - StripePayments (~> 25.9.0)
+    - StripePaymentSheet (~> 25.9.0)
+    - StripePaymentsUI (~> 25.9.0)
+  - stripe_ios/stripe_objc (0.0.1):
+    - Flutter
+    - Stripe (~> 25.9.0)
+    - StripeApplePay (~> 25.9.0)
+    - StripeFinancialConnections (~> 25.9.0)
+    - StripePayments (~> 25.9.0)
+    - StripePaymentSheet (~> 25.9.0)
+    - StripePaymentsUI (~> 25.9.0)
+  - StripeApplePay (25.9.0):
+    - StripeCore (= 25.9.0)
+  - StripeCore (25.9.0)
+  - StripeFinancialConnections (25.9.0):
+    - StripeCore (= 25.9.0)
+    - StripeUICore (= 25.9.0)
+  - StripeIssuing (25.9.0):
+    - StripeCore (= 25.9.0)
+    - StripePayments (= 25.9.0)
+    - StripePaymentsUI (= 25.9.0)
+  - StripePayments (25.9.0):
+    - StripeCore (= 25.9.0)
+    - StripePayments/Stripe3DS2 (= 25.9.0)
+  - StripePayments/Stripe3DS2 (25.9.0):
+    - StripeCore (= 25.9.0)
+  - StripePaymentSheet (25.9.0):
+    - StripeApplePay (= 25.9.0)
+    - StripeCore (= 25.9.0)
+    - StripePayments (= 25.9.0)
+    - StripePaymentsUI (= 25.9.0)
+  - StripePaymentsUI (25.9.0):
+    - StripeCore (= 25.9.0)
+    - StripePayments (= 25.9.0)
+    - StripeUICore (= 25.9.0)
+  - StripeUICore (25.9.0):
+    - StripeCore (= 25.9.0)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
+  - braintree_flutter_plus (from `.symlinks/plugins/braintree_flutter_plus/ios`)
   - Flutter (from `Flutter`)
-  - flutter_paystack (from `.symlinks/plugins/flutter_paystack/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - flutter_cashfree_pg_sdk (from `.symlinks/plugins/flutter_cashfree_pg_sdk/ios`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pay_ios (from `.symlinks/plugins/pay_ios/ios`)
-  - paytm (from `.symlinks/plugins/paytm/ios`)
+  - paytmpayments_allinonesdk (from `.symlinks/plugins/paytmpayments_allinonesdk/ios`)
+  - phonepe_payment_sdk (from `.symlinks/plugins/phonepe_payment_sdk/ios`)
   - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
-  - uni_payments (from `.symlinks/plugins/uni_payments/ios`)
-  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+  - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
   trunk:
+    - Braintree
+    - BraintreeDropIn
+    - CashfreeAnalyticsSDK
+    - CashfreePG
+    - CashfreePGCoreSDK
+    - CashfreePGUISDK
+    - CFNetworkSDK
+    - OrderedSet
+    - PhonePePayment
+    - razorpay-core-pod
     - razorpay-pod
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeFinancialConnections
+    - StripeIssuing
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
 
 EXTERNAL SOURCES:
+  braintree_flutter_plus:
+    :path: ".symlinks/plugins/braintree_flutter_plus/ios"
   Flutter:
     :path: Flutter
-  flutter_paystack:
-    :path: ".symlinks/plugins/flutter_paystack/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
+  flutter_cashfree_pg_sdk:
+    :path: ".symlinks/plugins/flutter_cashfree_pg_sdk/ios"
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   pay_ios:
     :path: ".symlinks/plugins/pay_ios/ios"
-  paytm:
-    :path: ".symlinks/plugins/paytm/ios"
+  paytmpayments_allinonesdk:
+    :path: ".symlinks/plugins/paytmpayments_allinonesdk/ios"
+  phonepe_payment_sdk:
+    :path: ".symlinks/plugins/phonepe_payment_sdk/ios"
   razorpay_flutter:
     :path: ".symlinks/plugins/razorpay_flutter/ios"
-  uni_payments:
-    :path: ".symlinks/plugins/uni_payments/ios"
-  webview_flutter:
-    :path: ".symlinks/plugins/webview_flutter/ios"
+  stripe_ios:
+    :path: ".symlinks/plugins/stripe_ios/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_paystack: 50021637b71e7712780744f69d2843e71b65175d
-  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  Braintree: 9e88d36e660d95a89f920cec2351392d647c3fe5
+  braintree_flutter_plus: 5dc144bec00ed72f1a4bbe53869a07afa463f2db
+  BraintreeDropIn: dda213a718343fe1eaff1d593547c2feecf0ce3c
+  CashfreeAnalyticsSDK: 11f37b2323be07bf07948bd6046b7c19e947ae07
+  CashfreePG: 88c1cdaa0ab8decb1c2e02263cca37eda9f30c59
+  CashfreePGCoreSDK: 0895818f75ea22e347e715a285cf241fe01f4349
+  CashfreePGUISDK: 2e4a3be02dbaf0af48520c573eb08585491b5545
+  CFNetworkSDK: 6a6261de10185efd4d2957583f0cbad395999cac
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_cashfree_pg_sdk: 388baa4a2eb555f2c409e12c22e149cc4d26a9f2
+  flutter_inappwebview_ios: 6f63631e2c62a7c350263b13fa5427aedefe81d4
+  fluttertoast: 21eecd6935e7064cc1fcb733a4c5a428f3f24f0f
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  path_provider_foundation: 0b743cbb62d8e47eab856f09262bb8c1ddcfe6ba
   pay_ios: 8c7beb9c61d885f3f51b61f75f8793023fc8843a
-  paytm: 776e5d03fbe319a3c5ace1ffacd4718946c440a3
-  razorpay-pod: f1763f8ee8f83152837abe7de1cdfbcd4eb035b9
+  paytmpayments_allinonesdk: ea2075b390f53bcd10f0ea32026918ecab647306
+  phonepe_payment_sdk: d07d3632d7181d1e612c40f194a335f8d03fb7d0
+  PhonePePayment: c720ada91c0976d6888a44571ced348ed8cd7d83
+  razorpay-core-pod: 6da5fb4ed280279d665507fdb50e213d793a5fe2
+  razorpay-pod: 4385cf844aa29389313b741e20c72fe668970d49
   razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
-  uni_payments: 2a9e8cad4fa059237c431252823018fc0a4df68f
-  webview_flutter: 3603125dfd3bcbc9d8d418c3f80aeecf331c068b
+  Stripe: 604acd978f3ec2921098f477ccaa229e12690373
+  stripe_ios: 8f8d8710a61362d7805e890e111f639ac65994ca
+  StripeApplePay: 9dabe2d3d897419a7a7663dc3338ff4bc51b9f54
+  StripeCore: 87c7dc5c110c1fd6b3de3ecdbc4df54c0ed5968a
+  StripeFinancialConnections: 2ef6995c4b5e4dc4007388c248446d47d13f1799
+  StripeIssuing: 89b08263d6bc0d881fab731f7336ecf664f93fa2
+  StripePayments: d2d00182defa4880b355020d6528a014cbd43170
+  StripePaymentSheet: 0fc945d26c9884ad5781d6c636e1b8adedf9a886
+  StripePaymentsUI: e2f00f9be6fea280d6188b805fdb5199a96e1151
+  StripeUICore: bfe8754c2d78eeb0fc4ce147316a7e5129b58423
+  url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
+  webview_flutter_wkwebview: 29eb20d43355b48fe7d07113835b9128f84e3af4
 
-PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
+PODFILE CHECKSUM: 57c8aed26fba39d3ec9424816221f294a07c58eb
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.16.2
