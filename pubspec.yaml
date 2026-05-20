@@ -2,7 +2,7 @@ name: uni_payments
 description: >-
   Unified Flutter API over Razorpay, Stripe, PayPal, Paystack, Flutterwave,
   Paytm, Cashfree, PhonePe, Google Pay and Apple Pay.
-version: 1.0.0
+version: 0.0.6
 homepage: https://github.com/NehilKoshiya/uni_payments
 repository: https://github.com/NehilKoshiya/uni_payments
 issue_tracker: https://github.com/NehilKoshiya/uni_payments/issues

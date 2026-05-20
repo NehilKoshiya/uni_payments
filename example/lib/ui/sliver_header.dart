@@ -98,7 +98,7 @@ class _VersionPill extends StatelessWidget {
         border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
       ),
       child: Text(
-        'v1.0.0',
+        'v0.0.6',
         style: textTheme.labelSmall?.copyWith(
           color: Colors.white.withValues(alpha: 0.75),
           fontFeatures: const [FontFeature.tabularFigures()],

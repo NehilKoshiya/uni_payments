@@ -71,7 +71,7 @@ Every imperative call returns `Future<PaymentResult>`. Wallet buttons exist beca
 
 ```yaml
 dependencies:
-  uni_payments: ^1.0.0
+  uni_payments: ^0.0.6
 ```
 
 ```sh
