@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 // ignore_for_file: deprecated_member_use
 //
 // PayPal is sunsetting the Braintree Drop-In SDK on 2026-07-14. The
@@ -22,6 +23,7 @@ class BraintreeGateway {
   /// Returns [PaymentCancelled] when the user dismisses the sheet without
   /// selecting a payment method.
   Future<PaymentResult> pay({
+    required BuildContext context,
     required String tokenizationKey,
     required double amount,
     required UniCustomer customer,
@@ -69,7 +71,7 @@ class BraintreeGateway {
         cardEnabled: true,
       );
 
-      final result = await BraintreeDropIn.start(request);
+      final result = await BraintreeDropIn.start(context, request);
 
       if (result == null) {
         return const PaymentCancelled(

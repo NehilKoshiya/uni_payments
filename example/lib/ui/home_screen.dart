@@ -23,14 +23,14 @@ typedef _GatewayInvoker =
     );
 
 final Map<String, _GatewayInvoker> _invokers = <String, _GatewayInvoker>{
-  'razorpay': (_, __) => PaymentDemos.razorpay(),
-  'stripe': (_, __) => PaymentDemos.stripe(),
+  'razorpay': (_, _) => PaymentDemos.razorpay(),
+  'stripe': (_, _) => PaymentDemos.stripe(),
   'paystack': (ctx, _) => PaymentDemos.paystack(ctx),
-  'paytm': (_, __) => PaymentDemos.paytm(),
-  'cashfree': (_, __) => PaymentDemos.cashfree(),
-  'phonepe': (_, __) => PaymentDemos.phonepe(),
+  'paytm': (_, _) => PaymentDemos.paytm(),
+  'cashfree': (_, _) => PaymentDemos.cashfree(),
+  'phonepe': (_, _) => PaymentDemos.phonepe(),
   'flutterwave': (ctx, _) => PaymentDemos.flutterwave(ctx),
-  'paypal': (_, __) => PaymentDemos.paypal(),
+  'paypal': (ctx, _) => PaymentDemos.paypal(ctx),
   'googlepay': (_, cfg) => PaymentDemos.googlePay(cfg),
   'applepay': (_, cfg) => PaymentDemos.applePay(cfg),
 };

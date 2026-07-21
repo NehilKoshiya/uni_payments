@@ -1,3 +1,18 @@
+## 0.0.7
+
+* Raise the minimum Flutter SDK to `3.41.0` so `flutter_stripe` can be
+  upgraded to `13.1.0`, which clears pub.dev's outdated dependency score.
+* Upgrade direct dependencies:
+  * `braintree_flutter_plus` `^5.2.1` -> `^7.0.1`
+  * `flutter_cashfree_pg_sdk` `^2.3.4` -> `^2.4.0+52`
+  * `flutter_stripe` `^12.6.0` -> `^13.1.0`
+* Update the PayPal/Braintree flow to the newer
+  `BraintreeDropIn.start(context, request)` API, which means
+  `UniPayments.payWithPaypal(...)` now requires a `BuildContext`.
+* Raise the example app's iOS deployment target to `16.0` for
+  `braintree_flutter_plus` 7.x compatibility.
+* Refresh README examples and release metadata for the new package version.
+
 ## 0.0.6
 
 ### New gateways

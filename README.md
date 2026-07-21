@@ -8,7 +8,7 @@ A unified Flutter API over Razorpay · Stripe · PayPal · Paystack · Flutterwa
 
 [![pub](https://img.shields.io/pub/v/uni_payments.svg?logo=dart&color=0175C2&label=pub.dev)](https://pub.dev/packages/uni_payments)
 [![pub points](https://img.shields.io/pub/points/uni_payments?logo=dart&color=0175C2)](https://pub.dev/packages/uni_payments/score)
-[![flutter](https://img.shields.io/badge/Flutter-3.32%2B-02569B?logo=flutter)](https://flutter.dev)
+[![flutter](https://img.shields.io/badge/Flutter-3.41%2B-02569B?logo=flutter)](https://flutter.dev)
 [![dart](https://img.shields.io/badge/Dart-3.8%2B-0175C2?logo=dart)](https://dart.dev)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
@@ -29,7 +29,7 @@ switch (result) {
 }
 ```
 
-> Swap `payWithRazorpay` for `payWithStripe`, `payWithPaypal`, `payWithGooglePay`, … the call shape is identical for every gateway.
+> Swap `payWithRazorpay` for `payWithStripe`, `payWithPaypal`, `payWithGooglePay`, … every gateway still returns the same `PaymentResult`, while some hosted/native sheets also need a `BuildContext`.
 
 ---
 
@@ -71,7 +71,7 @@ Every imperative call returns `Future<PaymentResult>`. Wallet buttons exist beca
 
 ```yaml
 dependencies:
-  uni_payments: ^0.0.6
+  uni_payments: ^0.0.7
 ```
 
 ```sh
@@ -86,9 +86,9 @@ import 'package:uni_payments/uni_payments.dart';
 
 | Platform | Minimum                                                                                  |
 | -------- | ---------------------------------------------------------------------------------------- |
-| Flutter  | **3.32+** · Dart **3.8+** (sealed classes + switch expressions)                          |
+| Flutter  | **3.41+** · Dart **3.8+** (required for `flutter_stripe` 13.1.x)                         |
 | Android  | **`minSdkVersion 23`** — modern Stripe / Razorpay / PhonePe builds need it               |
-| iOS      | **iOS 15+** — driven by PhonePe's IntentSDK constraint                                   |
+| iOS      | **iOS 16+** — required by `braintree_flutter_plus` 7.x and compatible with the other SDKs |
 
 ### Required extra setup
 
@@ -206,6 +206,7 @@ final result = await UniPayments.payWithStripe(
 
 ```dart
 final result = await UniPayments.payWithPaypal(
+  context: context,
   tokenizationKey: 'YOUR_BRAINTREE_TOKENIZATION_KEY',
   amount: 25.00,
   customer: customer,

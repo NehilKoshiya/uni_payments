@@ -223,6 +223,7 @@ class UniPayments {
   /// (you'll also need an Apple Pay merchant identifier registered in your
   /// iOS project's capabilities).
   static Future<PaymentResult> payWithPaypal({
+    required BuildContext context,
     required String tokenizationKey,
     required double amount,
     required UniCustomer customer,
@@ -237,6 +238,7 @@ class UniPayments {
     }, amount);
     if (guard != null) return Future<PaymentResult>.value(guard);
     return const BraintreeGateway().pay(
+      context: context,
       tokenizationKey: tokenizationKey,
       amount: amount,
       customer: customer,

@@ -100,8 +100,9 @@ class PaymentDemos {
     );
   }
 
-  static Future<PaymentResult> paypal() {
+  static Future<PaymentResult> paypal(BuildContext context) {
     return UniPayments.payWithPaypal(
+      context: context,
       tokenizationKey: 'YOUR_BRAINTREE_TOKENIZATION_KEY',
       amount: 25.00,
       customer: _customer,
