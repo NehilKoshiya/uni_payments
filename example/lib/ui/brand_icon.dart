@@ -6,7 +6,8 @@ import 'package:simple_icons/simple_icons.dart';
 /// Uses the [Simple Icons](https://simpleicons.org) font for brands that
 /// ship with the package (Razorpay, Stripe, Paytm, PayPal, PhonePe, Google
 /// Pay, Apple Pay) and falls back to a typographic letter badge for the
-/// three brands without coverage (Paystack, Flutterwave, Cashfree).
+/// brands without coverage (Paystack, Flutterwave, Cashfree, PayU, Square,
+/// Airwallex).
 class BrandIcon extends StatelessWidget {
   const BrandIcon({
     super.key,
@@ -33,6 +34,9 @@ class BrandIcon extends StatelessWidget {
     'paystack': 'P',
     'flutterwave': 'F',
     'cashfree': 'C',
+    'payu': 'Pu',
+    'square': 'Sq',
+    'airwallex': 'Aw',
   };
 
   @override

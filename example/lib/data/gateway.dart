@@ -70,6 +70,24 @@ const demoGateways = <Gateway>[
     tint: Color(0xFF5F259F),
   ),
   Gateway(
+    id: 'payu',
+    name: 'PayU',
+    tagline: 'India · LatAm · Turkey',
+    tint: Color(0xFF14AA4B),
+  ),
+  Gateway(
+    id: 'square',
+    name: 'Square',
+    tagline: 'US · UK · CA · AU',
+    tint: Color(0xFF3E4348),
+  ),
+  Gateway(
+    id: 'airwallex',
+    name: 'Airwallex',
+    tagline: 'Global · APAC-strong',
+    tint: Color(0xFF5A31F4),
+  ),
+  Gateway(
     id: 'googlepay',
     name: 'Google Pay',
     tagline: 'Tokenized wallet',

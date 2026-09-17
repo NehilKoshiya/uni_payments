@@ -100,6 +100,42 @@ class PaymentDemos {
     );
   }
 
+  static Future<PaymentResult> payu() {
+    return UniPayments.payWithPayu(
+      merchantKey: 'YOUR_PAYU_MERCHANT_KEY',
+      amount: 25.00,
+      productInfo: 'Uni Payments demo charge',
+      customer: _customer,
+      transactionId: _newReference(),
+      successUrl: 'https://example.com/payu/success',
+      failureUrl: 'https://example.com/payu/failure',
+      // Never compute the hash on-device — forward it to your backend,
+      // which holds the merchant salt.
+      generateHash: (request) async {
+        return <dynamic, dynamic>{};
+      },
+      useStagingEnvironment: true,
+    );
+  }
+
+  static Future<PaymentResult> square() {
+    return UniPayments.payWithSquare(
+      applicationId: 'YOUR_SQUARE_SANDBOX_APPLICATION_ID',
+    );
+  }
+
+  static Future<PaymentResult> airwallex() {
+    return UniPayments.payWithAirwallex(
+      // Created by your server via the PaymentIntents API.
+      clientSecret: 'YOUR_PAYMENT_INTENT_CLIENT_SECRET',
+      paymentIntentId: 'YOUR_PAYMENT_INTENT_ID',
+      amount: 25.00,
+      currency: 'USD',
+      countryCode: 'US',
+      useStagingEnvironment: true,
+    );
+  }
+
   static Future<PaymentResult> paypal(BuildContext context) {
     return UniPayments.payWithPaypal(
       context: context,

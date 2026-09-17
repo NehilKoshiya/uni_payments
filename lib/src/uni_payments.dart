@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'gateways/airwallex_gateway.dart';
 import 'gateways/apple_pay_gateway.dart';
 import 'gateways/braintree_gateway.dart';
 import 'gateways/cashfree_gateway.dart';
@@ -7,8 +8,10 @@ import 'gateways/flutterwave_gateway.dart';
 import 'gateways/google_pay_gateway.dart';
 import 'gateways/paystack_gateway.dart';
 import 'gateways/paytm_gateway.dart';
+import 'gateways/payu_gateway.dart';
 import 'gateways/phonepe_gateway.dart';
 import 'gateways/razorpay_gateway.dart';
+import 'gateways/square_gateway.dart';
 import 'gateways/stripe_gateway.dart';
 import 'models/payment_result.dart';
 import 'models/uni_customer.dart';
@@ -233,6 +236,58 @@ class UniPayments {
     );
   }
 
+  /// Present PayU's CheckoutPro sheet.
+  ///
+  /// PayU signs every checkout step with an HMAC hash computed from your
+  /// merchant **salt** — a secret that must never ship in the client.
+  /// [generateHash] is called (possibly more than once per checkout) with
+  /// the raw request PayU wants signed; forward it to your backend and
+  /// return its response verbatim. See
+  /// https://devguide.payu.in/flutter-sdk-integration/.
+  ///
+  /// [successUrl] and [failureUrl] are used as both the Android and iOS
+  /// redirect URLs. For OS-specific URLs or advanced CheckoutPro config
+  /// (SI, split payments, EMI, …), pass [additionalPaymentParams] /
+  /// [checkoutConfig] with PayU's raw keys from `PayUConstantKeys`.
+  static Future<PaymentResult> payWithPayu({
+    required String merchantKey,
+    required double amount,
+    required String productInfo,
+    required UniCustomer customer,
+    required String transactionId,
+    required String successUrl,
+    required String failureUrl,
+    required PayuHashGenerator generateHash,
+    bool useStagingEnvironment = false,
+    String merchantDisplayName = '',
+    Map<String, dynamic>? additionalPaymentParams,
+    Map<String, dynamic>? checkoutConfig,
+  }) {
+    final guard = _validate(<String, String>{
+      'merchantKey': merchantKey,
+      'productInfo': productInfo,
+      'customer.email': customer.email,
+      'transactionId': transactionId,
+      'successUrl': successUrl,
+      'failureUrl': failureUrl,
+    }, amount);
+    if (guard != null) return Future<PaymentResult>.value(guard);
+    return const PayuGateway().pay(
+      merchantKey: merchantKey,
+      amount: amount,
+      productInfo: productInfo,
+      customer: customer,
+      transactionId: transactionId,
+      successUrl: successUrl,
+      failureUrl: failureUrl,
+      generateHash: generateHash,
+      useStagingEnvironment: useStagingEnvironment,
+      merchantDisplayName: merchantDisplayName,
+      additionalPaymentParams: additionalPaymentParams,
+      checkoutConfig: checkoutConfig,
+    );
+  }
+
   /// Open the PayPal-branded Braintree Drop-In UI (also supports cards,
   /// Google Pay and Apple Pay when configured).
   ///
@@ -299,6 +354,59 @@ class UniPayments {
       merchantCountryCode: merchantCountryCode,
       applePayMerchantId: applePayMerchantId,
       googlePayTestEnv: googlePayTestEnv,
+    );
+  }
+
+  /// Present Square's native card-entry sheet.
+  ///
+  /// This only tokenizes a card into a one-time-use nonce — it does not
+  /// charge it. Send the resulting [PaymentSuccess.transactionId] (the
+  /// nonce) to your backend and charge it via Square's Payments API.
+  ///
+  /// Sandbox vs. production is determined entirely by which
+  /// [applicationId] you pass (sandbox app IDs look like
+  /// `sandbox-sq0idb-...`) — there's no separate staging flag.
+  static Future<PaymentResult> payWithSquare({
+    required String applicationId,
+    bool collectPostalCode = true,
+  }) {
+    final guard = _validate(<String, String>{'applicationId': applicationId});
+    if (guard != null) return Future<PaymentResult>.value(guard);
+    return const SquareGateway().pay(
+      applicationId: applicationId,
+      collectPostalCode: collectPostalCode,
+    );
+  }
+
+  /// Present Airwallex's full payment sheet (cards, wallets, and local
+  /// redirect methods, depending on what your account supports).
+  ///
+  /// [clientSecret] and [paymentIntentId] come from a `PaymentIntent` your
+  /// server creates via Airwallex's API — never hard-code them.
+  static Future<PaymentResult> payWithAirwallex({
+    required String clientSecret,
+    required String paymentIntentId,
+    required double amount,
+    required String currency,
+    required String countryCode,
+    String? customerId,
+    bool useStagingEnvironment = false,
+  }) {
+    final guard = _validate(<String, String>{
+      'clientSecret': clientSecret,
+      'paymentIntentId': paymentIntentId,
+      'currency': currency,
+      'countryCode': countryCode,
+    }, amount);
+    if (guard != null) return Future<PaymentResult>.value(guard);
+    return const AirwallexGateway().pay(
+      clientSecret: clientSecret,
+      paymentIntentId: paymentIntentId,
+      amount: amount,
+      currency: currency,
+      countryCode: countryCode,
+      customerId: customerId,
+      useStagingEnvironment: useStagingEnvironment,
     );
   }
 

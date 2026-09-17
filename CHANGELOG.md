@@ -1,3 +1,40 @@
+## 0.0.9
+
+### New gateways
+
+* **PayU** (`UniPayments.payWithPayu`) — India, Latin America, Turkey and
+  Central/Eastern Europe. Uses `payu_checkoutpro_flutter` ^1.4.5. PayU
+  signs every checkout step with an HMAC hash computed from your
+  merchant salt, so `payWithPayu` takes a `generateHash` callback that
+  you wire to your own backend — the salt must never ship client-side.
+* **Square** (`UniPayments.payWithSquare`) — US, UK, Canada, Australia.
+  Uses `square_in_app_payments` ^1.7.14 (pinned below 2.x on purpose —
+  see the pubspec comment — to avoid raising this package's Flutter
+  floor to 3.44 for an optional gateway). Like Braintree/Google Pay/Apple
+  Pay, this only tokenizes a card into a nonce; charge it server-side via
+  Square's Payments API. Requires Android `minSdkVersion 28` if used.
+* **Airwallex** (`UniPayments.payWithAirwallex`) — global, particularly
+  strong in Hong Kong, Singapore and Australia. Uses the official
+  `airwallex_payment_flutter` ^0.4.0 and presents Airwallex's full hosted
+  payment sheet. A `payment_in_progress` result means the payment was
+  submitted but not yet confirmed — verify via your backend, the same as
+  Razorpay's external-wallet case.
+* Demo app updated with tiles for all three.
+
+### Considered and rejected
+
+* **`upi_pay`** (direct UPI-intent payments) — looked promising on
+  points/likes/downloads, but it's officially marked **discontinued** on
+  pub.dev. Not included.
+* **Midtrans** (Indonesia) — the only maintained wrapper,
+  `midtrans_sdk` 1.2.0, has a confirmed bug: its iOS native bridge sends
+  `transactionStatus`/`statusMessage`/`orderId` keys, but the Dart-side
+  parser only reads `status`/`message` — every transaction outcome fails
+  to parse there and the result callback silently never fires. Android
+  has a separate gap: cancelling via the system back button never
+  triggers the finished-callback at all. Not included; revisit if the
+  package is fixed upstream.
+
 ## 0.0.8
 
 * Upgrade `flutter_stripe` `^13.1.0` -> `^14.0.0`, clearing pub.dev's
