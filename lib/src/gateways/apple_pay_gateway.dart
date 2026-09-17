@@ -133,6 +133,7 @@ class ApplePayGateway {
         gatewayName: _gatewayName,
         errorCode: 'apple_pay_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }
@@ -180,6 +181,7 @@ class ApplePayGateway {
             gatewayName: _gatewayName,
             errorCode: 'apple_pay_error',
             message: error.toString(),
+            rawResponse: <String, dynamic>{'exception': error.toString()},
           ),
         );
       },

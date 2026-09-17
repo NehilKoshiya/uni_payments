@@ -16,6 +16,10 @@ class RazorpayGateway {
 
   /// Open the Razorpay checkout sheet and resolve when the user completes,
   /// cancels, or hits an error.
+  ///
+  /// Pass [timeout] to bound how long this waits for Razorpay's callback
+  /// before giving up with a [PaymentFailure]; by default it waits
+  /// indefinitely, matching prior behaviour.
   Future<PaymentResult> pay({
     required String keyId,
     required double amount,
@@ -24,6 +28,7 @@ class RazorpayGateway {
     required String description,
     required String currency,
     Color? themeColor,
+    Duration? timeout,
   }) {
     final completer = Completer<PaymentResult>();
     final razorpay = Razorpay();
@@ -103,11 +108,23 @@ class RazorpayGateway {
           gatewayName: _gatewayName,
           errorCode: 'razorpay_init_error',
           message: e.toString(),
+          rawResponse: <String, dynamic>{'exception': e.toString()},
         ),
       );
     }
 
-    return completer.future.whenComplete(razorpay.clear);
+    var future = completer.future;
+    if (timeout != null) {
+      future = future.timeout(
+        timeout,
+        onTimeout: () => PaymentFailure(
+          gatewayName: _gatewayName,
+          errorCode: 'razorpay_timeout',
+          message: 'No response from Razorpay within $timeout',
+        ),
+      );
+    }
+    return future.whenComplete(razorpay.clear);
   }
 
   /// Razorpay expects a `#RRGGBB` string — drop the alpha channel and

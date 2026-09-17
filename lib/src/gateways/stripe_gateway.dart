@@ -77,12 +77,19 @@ class StripeGateway {
         gatewayName: _gatewayName,
         errorCode: e.error.code.name,
         message: e.error.localizedMessage ?? e.error.message ?? 'Stripe error',
+        rawResponse: <String, dynamic>{
+          'exception': e.toString(),
+          'declineCode': e.error.declineCode,
+          'stripeErrorCode': e.error.stripeErrorCode,
+          'type': e.error.type,
+        },
       );
     } catch (e) {
       return PaymentFailure(
         gatewayName: _gatewayName,
         errorCode: 'stripe_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

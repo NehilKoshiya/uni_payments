@@ -75,6 +75,7 @@ class PaytmGateway {
         gatewayName: _gatewayName,
         errorCode: 'paytm_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

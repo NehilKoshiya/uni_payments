@@ -57,7 +57,10 @@ class PaystackGateway {
         reference: reference,
         secretKey: secretKey,
         email: customer.email,
-        amount: amount * 100,
+        // Round to whole minor units — `amount * 100` alone can land on
+        // e.g. `1998.9999999999998` for `19.99` due to binary float
+        // rounding, risking an off-by-a-cent charge.
+        amount: (amount * 100).round().toDouble(),
         currency: currency.upstream,
         channel: const [
           PaystackPaymentChannel.mobileMoney,
@@ -121,6 +124,7 @@ class PaystackGateway {
         gatewayName: _gatewayName,
         errorCode: 'paystack_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

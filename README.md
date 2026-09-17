@@ -10,7 +10,7 @@ A unified Flutter API over Razorpay · Stripe · PayPal · Paystack · Flutterwa
 [![pub points](https://img.shields.io/pub/points/uni_payments?logo=dart&color=0175C2)](https://pub.dev/packages/uni_payments/score)
 [![flutter](https://img.shields.io/badge/Flutter-3.41%2B-02569B?logo=flutter)](https://flutter.dev)
 [![dart](https://img.shields.io/badge/Dart-3.8%2B-0175C2?logo=dart)](https://dart.dev)
-[![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 </div>
 
@@ -71,7 +71,7 @@ Every imperative call returns `Future<PaymentResult>`. Wallet buttons exist beca
 
 ```yaml
 dependencies:
-  uni_payments: ^0.0.7
+  uni_payments: ^0.0.8
 ```
 
 ```sh
@@ -86,7 +86,7 @@ import 'package:uni_payments/uni_payments.dart';
 
 | Platform | Minimum                                                                                  |
 | -------- | ---------------------------------------------------------------------------------------- |
-| Flutter  | **3.41+** · Dart **3.8+** (required for `flutter_stripe` 13.1.x)                         |
+| Flutter  | **3.41+** · Dart **3.8+** (required for `flutter_stripe` 14.x)                           |
 | Android  | **`minSdkVersion 23`** — modern Stripe / Razorpay / PhonePe builds need it               |
 | iOS      | **iOS 16+** — required by `braintree_flutter_plus` 7.x and compatible with the other SDKs |
 
@@ -174,8 +174,13 @@ final result = await UniPayments.payWithRazorpay(
   description: 'Pro subscription',
   themeColor: Colors.indigo,        // Color, not '#RRGGBB'
   currency: 'INR',
+  timeout: const Duration(minutes: 5), // optional — see below
 );
 ```
+
+> By default this waits indefinitely for the checkout to complete. Pass
+> `timeout` to get a `PaymentFailure` instead of hanging forever if the
+> SDK never calls back (e.g. the app was backgrounded and killed).
 
 </details>
 
@@ -281,8 +286,15 @@ final result = await UniPayments.payWithCashfree(
   orderId: 'order_${DateTime.now().millisecondsSinceEpoch}',
   paymentSessionId: 'session_xxx',
   useStagingEnvironment: true,
+  timeout: const Duration(minutes: 5), // optional, see below
 );
 ```
+
+> Only one Cashfree payment can be in flight at a time — the upstream SDK
+> is a process-wide singleton. Calling this again before a prior call
+> resolves fails fast with `PaymentFailure(errorCode:
+> 'cashfree_already_in_progress')` instead of corrupting the first call.
+> `timeout` works the same way as Razorpay's above.
 
 </details>
 
@@ -379,4 +391,4 @@ flutter run
 
 ---
 
-<sub>Apache 2.0 · © Nehil Koshiya</sub>
+<sub>MIT · © Nehil Koshiya</sub>

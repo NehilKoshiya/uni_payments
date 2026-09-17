@@ -1,3 +1,31 @@
+## 0.0.8
+
+* Upgrade `flutter_stripe` `^13.1.0` -> `^14.0.0`, clearing pub.dev's
+  outdated dependency score. 14.0.0's only breaking change is Android
+  Gradle Plugin 9 support; the PaymentSheet APIs this package uses
+  (`initPaymentSheet`, `presentPaymentSheet`, `StripeException`,
+  `FailureCode`, `PaymentSheetApplePay`, `PaymentSheetGooglePay`) are
+  unchanged, so no code changes were required.
+* **Fixed a Cashfree race condition**: `CFPaymentGatewayService` is a
+  process-wide singleton with *static* callback fields upstream. Calling
+  `payWithCashfree` again before a prior call finished silently overwrote
+  the first call's callbacks, leaving it hanging forever and risking a
+  stray callback resolving the wrong call. `payWithCashfree` now rejects a
+  concurrent call immediately with a `PaymentFailure`
+  (`cashfree_already_in_progress`) instead.
+* **Fixed a Paystack rounding bug**: `amount * 100` had no rounding, so a
+  value like `19.99` could become `1998.9999999999998` in floating point,
+  risking an off-by-a-cent charge. Now rounded the same way Razorpay
+  already does.
+* Added an optional `timeout` parameter to `payWithRazorpay` and
+  `payWithCashfree` so callers can bound how long they wait for the
+  native SDK's callback instead of hanging indefinitely if it never
+  fires. Defaults to no timeout, matching prior behaviour.
+* Every gateway's exception path now also populates `PaymentResult
+  .rawResponse` with the raw exception detail (and, for Stripe, decline
+  code / Stripe error code) for backend/audit logging, in addition to the
+  existing human-readable `message`.
+
 ## 0.0.7
 
 * Raise the minimum Flutter SDK to `3.41.0` so `flutter_stripe` can be

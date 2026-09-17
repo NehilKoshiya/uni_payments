@@ -93,6 +93,7 @@ class PhonepeGateway {
         gatewayName: _gatewayName,
         errorCode: 'phonepe_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

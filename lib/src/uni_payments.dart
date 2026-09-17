@@ -35,6 +35,10 @@ class UniPayments {
   /// [businessName] is shown as the merchant header inside Razorpay's UI —
   /// this is your store's name, not the buyer's. Buyer details come from
   /// [customer].
+  ///
+  /// By default this waits indefinitely for Razorpay's checkout to
+  /// complete; pass [timeout] to bound the wait and get a [PaymentFailure]
+  /// instead of hanging forever if the SDK never calls back.
   static Future<PaymentResult> payWithRazorpay({
     required String keyId,
     required double amount,
@@ -43,6 +47,7 @@ class UniPayments {
     String description = '',
     Color? themeColor,
     String currency = 'INR',
+    Duration? timeout,
   }) {
     final guard = _validate(<String, String>{
       'keyId': keyId,
@@ -58,6 +63,7 @@ class UniPayments {
       description: description,
       themeColor: themeColor,
       currency: currency,
+      timeout: timeout,
     );
   }
 
@@ -161,11 +167,21 @@ class UniPayments {
   /// the `orderId` here — Cashfree handles amount, customer details and
   /// payment methods server-side.
   ///
+  /// Only one Cashfree payment can be in flight at a time — the upstream
+  /// SDK is a process-wide singleton. A call made while another is still
+  /// pending resolves immediately with a [PaymentFailure] rather than
+  /// corrupting the first call's result.
+  ///
+  /// By default this waits indefinitely for Cashfree's checkout to
+  /// complete; pass [timeout] to bound the wait and get a [PaymentFailure]
+  /// instead of hanging forever if the SDK never calls back.
+  ///
   /// See https://www.cashfree.com/docs/payments/online/mobile/flutter.
   static Future<PaymentResult> payWithCashfree({
     required String orderId,
     required String paymentSessionId,
     bool useStagingEnvironment = false,
+    Duration? timeout,
   }) {
     final guard = _validate(<String, String>{
       'orderId': orderId,
@@ -176,6 +192,7 @@ class UniPayments {
       orderId: orderId,
       paymentSessionId: paymentSessionId,
       useStagingEnvironment: useStagingEnvironment,
+      timeout: timeout,
     );
   }
 

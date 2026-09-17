@@ -99,6 +99,7 @@ class BraintreeGateway {
         gatewayName: _gatewayName,
         errorCode: 'paypal_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

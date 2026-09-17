@@ -90,6 +90,7 @@ class FlutterwaveGateway {
         gatewayName: _gatewayName,
         errorCode: 'flutterwave_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }

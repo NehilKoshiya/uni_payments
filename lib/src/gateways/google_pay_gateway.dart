@@ -121,6 +121,7 @@ class GooglePayGateway {
         gatewayName: _gatewayName,
         errorCode: 'google_pay_error',
         message: e.toString(),
+        rawResponse: <String, dynamic>{'exception': e.toString()},
       );
     }
   }
@@ -166,6 +167,7 @@ class GooglePayGateway {
             gatewayName: _gatewayName,
             errorCode: 'google_pay_error',
             message: error.toString(),
+            rawResponse: <String, dynamic>{'exception': error.toString()},
           ),
         );
       },
