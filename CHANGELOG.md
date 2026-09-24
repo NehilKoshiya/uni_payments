@@ -1,3 +1,12 @@
+## 0.0.10
+
+* Upgrade `square_in_app_payments` to ^2.0.0 (iOS now integrates via Swift
+  Package Manager; CocoaPods still works). No API changes for callers.
+* **Breaking for older toolchains:** raise the minimum SDK to Flutter
+  `3.44.0` / Dart `3.12.0`, as required by `square_in_app_payments` 2.x.
+* Clean up `payu_gateway.dart` (formatting + private initializing formals)
+  so static analysis is lint-free on Dart 3.12.
+
 ## 0.0.9
 
 ### New gateways

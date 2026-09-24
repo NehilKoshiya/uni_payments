@@ -8,7 +8,7 @@ A unified Flutter API over Razorpay · Stripe · PayPal · Paystack · Flutterwa
 
 [![pub](https://img.shields.io/pub/v/uni_payments.svg?logo=dart&color=0175C2&label=pub.dev)](https://pub.dev/packages/uni_payments)
 [![pub points](https://img.shields.io/pub/points/uni_payments?logo=dart&color=0175C2)](https://pub.dev/packages/uni_payments/score)
-[![flutter](https://img.shields.io/badge/Flutter-3.41%2B-02569B?logo=flutter)](https://flutter.dev)
+[![flutter](https://img.shields.io/badge/Flutter-3.44%2B-02569B?logo=flutter)](https://flutter.dev)
 [![dart](https://img.shields.io/badge/Dart-3.8%2B-0175C2?logo=dart)](https://dart.dev)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -111,7 +111,7 @@ import 'package:uni_payments/uni_payments.dart';
 
 | Platform | Minimum                                                                                  |
 | -------- | ---------------------------------------------------------------------------------------- |
-| Flutter  | **3.41+** · Dart **3.8+** (required for `flutter_stripe` 14.x)                           |
+| Flutter  | **3.44+** · Dart **3.12+** (required for `square_in_app_payments` 2.x)               |
 | Android  | **`minSdkVersion 23`** — modern Stripe / Razorpay / PhonePe builds need it. **28+** if you use Square. |
 | iOS      | **iOS 16+** — required by `braintree_flutter_plus` 7.x and compatible with the other SDKs |
 
@@ -531,7 +531,7 @@ Every gateway in this package follows the same shape, so a new one is mostly mec
 
 1. **`lib/src/gateways/<name>_gateway.dart`** — a stateless `<Name>Gateway` class with a `pay(...)` method that awaits/wraps the upstream SDK and maps its outcome onto `PaymentSuccess` / `PaymentFailure` / `PaymentCancelled`. Give it a `const _gatewayName = '<name>';` matching the public method name, and stash the untouched upstream response in `rawResponse` wherever you can.
 2. **`lib/src/uni_payments.dart`** — add a `payWithXxx(...)` static method that validates required fields via `_validate(...)` and delegates to the new gateway. Document any upstream quirks in the doc comment (see `payWithCashfree` for an example of calling out an upstream concurrency limitation).
-3. **`pubspec.yaml`** — add the dependency, and check its `environment:` constraint before pinning — don't silently raise this package's Flutter/Dart floor for an optional gateway (see the `square_in_app_payments` comment for the pattern).
+3. **`pubspec.yaml`** — add the dependency, and check its `environment:` constraint before pinning — don't silently raise this package's Flutter/Dart floor for an optional gateway.
 4. **`example/`** — add a tile (`lib/data/gateway.dart`), a demo method (`lib/services/payment_demos.dart`), wire it into the dispatch map (`lib/ui/home_screen.dart`), and add a brand color/letter fallback (`lib/ui/brand_icon.dart`) if [Simple Icons](https://simpleicons.org) doesn't have the logo.
 5. **`README.md`** — add a row to the [Gateways](#gateways) table and a cookbook entry under [Per-gateway cookbook](#per-gateway-cookbook).
 6. **`CHANGELOG.md`** — new gateways get their own entry under "New gateways."

@@ -53,9 +53,9 @@ class PayuGateway {
         onGenerateHash: (hashRequest) {
           // Fire-and-forget from PayU's side too — it doesn't await this.
           unawaited(
-            generateHash(hashRequest).then(
-              (hash) => checkoutPro.hashGenerated(hash: hash),
-            ),
+            generateHash(
+              hashRequest,
+            ).then((hash) => checkoutPro.hashGenerated(hash: hash)),
           );
         },
         onSuccess: (response) {
@@ -154,16 +154,12 @@ Map<String, dynamic>? _asMap(dynamic response) {
 /// itself.
 class _Delegate implements PayUCheckoutProProtocol {
   _Delegate({
-    required void Function(Map<dynamic, dynamic> response) onGenerateHash,
-    required void Function(dynamic response) onSuccess,
-    required void Function(dynamic response) onFailure,
-    required void Function(Map<dynamic, dynamic>? response) onCancel,
-    required void Function(Map<dynamic, dynamic>? response) onError,
-  }) : _onGenerateHash = onGenerateHash,
-       _onSuccess = onSuccess,
-       _onFailure = onFailure,
-       _onCancel = onCancel,
-       _onError = onError;
+    required this._onGenerateHash,
+    required this._onSuccess,
+    required this._onFailure,
+    required this._onCancel,
+    required this._onError,
+  });
 
   final void Function(Map<dynamic, dynamic> response) _onGenerateHash;
   final void Function(dynamic response) _onSuccess;

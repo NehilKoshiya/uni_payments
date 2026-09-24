@@ -3,7 +3,7 @@ description: >-
   Unified Flutter API over Razorpay, Stripe, PayPal, Paystack, Flutterwave,
   Paytm, Cashfree, PhonePe, PayU, Square, Airwallex, Google Pay and Apple
   Pay.
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/NehilKoshiya/uni_payments
 repository: https://github.com/NehilKoshiya/uni_payments
 issue_tracker: https://github.com/NehilKoshiya/uni_payments/issues
@@ -17,8 +17,8 @@ topics:
   - flutter
 
 environment:
-  sdk: ">=3.8.1 <4.0.0"
-  flutter: ">=3.41.0"
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"
 
 dependencies:
   flutter:
@@ -39,11 +39,9 @@ dependencies:
   flutter_cashfree_pg_sdk: ^2.4.0+52
   phonepe_payment_sdk: ^3.0.2
   payu_checkoutpro_flutter: ^1.4.5
-  # Pinned below 2.x on purpose: square_in_app_payments 2.0.0 requires
-  # Flutter >=3.44.0, which would raise this package's own floor further
-  # for every consumer just to support one optional gateway. 1.7.x is
-  # actively maintained and only needs Flutter >=1.10.0.
-  square_in_app_payments: ^1.7.14
+  # 2.x requires Flutter >=3.44.0 / Dart >=3.12.0, which sets this
+  # package's SDK floor.
+  square_in_app_payments: ^2.0.0
   airwallex_payment_flutter: ^0.4.0
 
 dev_dependencies:
